@@ -16,7 +16,7 @@ class CreateSurveyResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('survey.database.tables.survey_results'), function (Blueprint $table) {
+        Schema::create(config('survey-manager.database.tables.survey_results'), function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('survey_id');
             $table->unsignedInteger('user_id')->nullable();
@@ -33,6 +33,6 @@ class CreateSurveyResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('survey.database.tables.survey_results'));
+        Schema::dropIfExists(config('survey-manager.database.tables.survey_results'));
     }
 }

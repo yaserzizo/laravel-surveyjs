@@ -4,6 +4,7 @@ namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 /**
  * Class Survey
@@ -32,7 +33,7 @@ class Survey extends Model
     public function __construct(array $attributes = [])
     {
         if (! isset($this->table)) {
-            $this->setTable(config('survey.database.tables.surveys'));
+            $this->setTable(config('survey-manager.database.tables.surveys'));
         }
 
         parent::__construct($attributes);
@@ -43,7 +44,7 @@ class Survey extends Model
         parent::boot();
 
         static::creating(function ($survey) {
-            $survey->slug = str_slug($survey->name);
+            $survey->slug = Str::slug($survey->name);
 
             $latestSlug = static::whereRaw("slug = '$survey->slug' or slug LIKE '$survey->slug-%'")
                                 ->latest('id')

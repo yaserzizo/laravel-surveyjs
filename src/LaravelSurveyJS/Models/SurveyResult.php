@@ -29,7 +29,7 @@ class SurveyResult extends Model
     public function __construct(array $attributes = [])
     {
         if (!isset($this->table)) {
-            $this->setTable(config('survey.database.tables.survey_results'));
+            $this->setTable(config('survey-manager.database.tables.survey_results'));
         }
 
         parent::__construct($attributes);
