@@ -1,6 +1,5 @@
 {
     "name": "fruitware/laravel-surveyjs",
-    "version": "1.0.0",
     "description": "Up-to-date Laravel wrapper for surveyjs library",
     "license": "MIT",
     "authors": [
