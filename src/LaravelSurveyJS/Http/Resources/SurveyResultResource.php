@@ -1,10 +1,15 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs\app\Http\Resources;
+namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SurveyResource extends JsonResource
+/**
+ * Class SurveyResultResource
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
+class SurveyResultResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,9 +21,8 @@ class SurveyResource extends JsonResource
     {
         return [
             'id'            =>  $this->id,
-            'name'          =>  $this->name,
-            'slug'          =>  $this->slug,
             'json'          =>  $this->json,
+            'ip_address'    =>  $this->ip_address,
             'created_at'    =>  $this->created_at->formatLocalized('%A %d %B %Y'),
         ];
     }

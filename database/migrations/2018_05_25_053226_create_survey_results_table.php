@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+/**
+ * Class CreateSurveyResultsTable
+ */
 class CreateSurveyResultsTable extends Migration
 {
     /**
@@ -13,7 +16,7 @@ class CreateSurveyResultsTable extends Migration
      */
     public function up()
     {
-        Schema::create('survey_results', function (Blueprint $table) {
+        Schema::create(config('survey.database.tables.survey_results'), function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('survey_id');
             $table->unsignedInteger('user_id')->nullable();
@@ -30,6 +33,6 @@ class CreateSurveyResultsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('survey_results');
+        Schema::dropIfExists(config('survey.database.tables.survey_results'));
     }
 }

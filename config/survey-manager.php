@@ -9,13 +9,13 @@ return [
     */
 
     // The prefix used in all base routes
-    'route_prefix'              =>  'survey',
+    'route_prefix'       => 'survey',
 
     // The prefix used in api endpoints
-    'api_prefix'                =>  'api',
+    'api_prefix'         => 'api',
 
     // The prefix used in admin route
-    'admin_prefix'              =>  'admin',
+    'admin_prefix'       => 'admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -24,13 +24,13 @@ return [
     */
 
     // route middleware
-    'route_middleware'          =>  ['web'],
+    'route_middleware'   => ['web'],
 
     // api middleware
-    'api_middleware'            =>  ['api'],
+    'api_middleware'     => ['api'],
 
     // admin middleware
-    'admin_middleware'          =>  ['web'],
+    'admin_middleware'   => ['web'],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,16 +39,16 @@ return [
     */
 
     // Pagination in admin section
-    'pagination_perPage'        =>  12,
+    'pagination_perPage' => 12,
 
     // User model
-    'user_model'                =>  'App\User',
+    'user_model'         => 'App\User',
 
     // Default locale for survey
-    'locale'                    =>  'en',
+    'locale'             => 'en',
 
     // Default theme for survey
-    'theme'                     =>  'darkblue',
+    'theme'              => 'darkblue',
 
     /*
     |--------------------------------------------------------------------------
@@ -57,23 +57,23 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'builder'                   =>  [
+    'builder'  => [
 
-        'theme'                 =>  'darkblue',
+        'theme' => 'darkblue',
 
-        'showEmbededSurveyTab'  =>  false,
+        'showEmbededSurveyTab' => false,
 
-        'showJSONEditorTab'     =>  false,
+        'showJSONEditorTab' => false,
 
-        'showTestSurveyTab'     =>  true,
+        'showTestSurveyTab' => true,
 
-        'showPropertyGrid'      =>  true,
+        'showPropertyGrid' => true,
 
-        'showOptions'           =>  false,
+        'showOptions' => false,
 
-        'showState'             =>  false,
+        'showState' => false,
 
-        'haveCommercialLicense' =>  false,
+        'haveCommercialLicense' => false,
     ],
 
     /*
@@ -81,30 +81,44 @@ return [
     | SurveyJS Custom Widgets
     |--------------------------------------------------------------------------
     */
-    'widgets'                   =>  [
+    'widgets'  => [
 
-        'icheck'                =>  false,
+        'icheck' => false,
 
-        'select2'               =>  false,
+        'select2' => false,
 
-        'inputmask'             =>  false,
+        'inputmask' => false,
 
-        'jquerybarrating'       =>  false,
+        'jquerybarrating' => false,
 
-        'jqueryuidatepicker'    =>  false,
+        'jqueryuidatepicker' => false,
 
-        'nouislider'            =>  false,
+        'nouislider' => false,
 
-        'select2tagbox'         =>  false,
+        'select2tagbox' => false,
 
-        'signaturepad'          =>  false,
+        'signaturepad' => false,
 
-        'sortablejs'            =>  false,
+        'sortablejs' => false,
 
-        'ckeditor'              =>  false,
+        'ckeditor' => false,
 
-        'autocomplete'          =>  false,
+        'autocomplete' => false,
 
-        'bootstrapslider'       =>  false,
+        'bootstrapslider' => false,
+    ],
+
+    /*
+     * Database related configurations.
+     */
+    'database' => [
+        /*
+         * Name of the tables created by the migrations
+         * and used by the models of this package.
+         */
+        'tables' => [
+            'surveys'   => 'surveyjs_surveys',
+            'survey_results'  => 'surveyjs_survey_results',
+        ],
     ],
 ];

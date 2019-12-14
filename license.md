@@ -1,5 +1,6 @@
 # The license
 
-Copyright (c) Aidyn Makhataev <makataev.7@gmail.com>
+Copyright for updated version (c) Fruitware <open-source@fruitware>
+initial creation (c) Aidyn Makhataev <makataev.7@gmail.com>
 
-...Add your license text here...
+...Licence text coming soon...

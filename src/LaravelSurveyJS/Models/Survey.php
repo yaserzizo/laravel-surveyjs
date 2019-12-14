@@ -1,15 +1,19 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs\app\Models;
+namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+/**
+ * Class Survey
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
 class Survey extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'surveys';
     protected $primaryKey = 'id';
 
     protected $fillable = [
@@ -19,6 +23,20 @@ class Survey extends Model
     protected $casts = [
         'json'  =>  'array',
     ];
+
+    /**
+     * Survey constructor with custom table name definition
+     *
+     * @param array $attributes
+     */
+    public function __construct(array $attributes = [])
+    {
+        if (! isset($this->table)) {
+            $this->setTable(config('survey.database.tables.surveys'));
+        }
+
+        parent::__construct($attributes);
+    }
 
     public static function boot()
     {
@@ -45,6 +63,6 @@ class Survey extends Model
      */
     public function results()
     {
-        return $this->hasMany('AidynMakhataev\LaravelSurveyJs\app\Models\SurveyResult', 'survey_id');
+        return $this->hasMany('Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models\SurveyResult', 'survey_id');
     }
 }

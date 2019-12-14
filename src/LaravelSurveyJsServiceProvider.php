@@ -1,9 +1,14 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs;
+namespace Fruitware\LaravelSurveyJS;
 
 use Illuminate\Support\ServiceProvider;
 
+/**
+ * Class LaravelSurveyJsServiceProvider
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
 class LaravelSurveyJsServiceProvider extends ServiceProvider
 {
     /**

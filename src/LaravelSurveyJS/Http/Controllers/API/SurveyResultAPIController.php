@@ -1,13 +1,18 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs\app\Http\Controllers\API;
+namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
-use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResource;
-use AidynMakhataev\LaravelSurveyJs\app\Http\Resources\SurveyResultResource;
+use Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models\Survey;
+use Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Resources\SurveyResource;
+use Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Resources\SurveyResultResource;
 
+/**
+ * Class SurveyResultAPIController
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
 class SurveyResultAPIController extends Controller
 {
     public function index(Survey $survey)

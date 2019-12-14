@@ -7,9 +7,9 @@ Contributions are accepted via Pull Requests on [Github](https://github.com/aidy
 # TODO
 If you want to contribute but do not know where to start, this list provides some starting points.
 
+— Add supporting for Laravel < 5.5
 - Add theme support
 - Add analytics and reports for survey results
-- Add supporting for Laravel < 5.5
 - Localization for Survey Builder
 - Set up TravisCI, StyleCI, ScrutinizerCI
 - Write a comprehensive ReadMe

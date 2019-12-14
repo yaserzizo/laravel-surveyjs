@@ -1,10 +1,15 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs\app\Http\Controllers;
+namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Controllers;
 
 use Illuminate\Routing\Controller;
-use AidynMakhataev\LaravelSurveyJs\app\Models\Survey;
+use Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models\Survey;
 
+/**
+ * Class SurveyController
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
 class SurveyController extends Controller
 {
     /**

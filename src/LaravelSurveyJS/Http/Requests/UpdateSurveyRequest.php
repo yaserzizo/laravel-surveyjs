@@ -1,9 +1,14 @@
 <?php
 
-namespace AidynMakhataev\LaravelSurveyJs\app\Http\Requests;
+namespace Fruitware\LaravelSurveyJS\LaravelSurveyJS\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Class UpdateSurveyRequest
+ *
+ * @package Fruitware/LaravelSurveyJS
+ */
 class UpdateSurveyRequest extends FormRequest
 {
     /**

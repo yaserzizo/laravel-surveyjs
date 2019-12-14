@@ -1,4 +1,4 @@
-# LaravelSurveyJs
+# Laravel 6.* SurveyJs package
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
 [![Total Downloads][ico-downloads]][link-downloads]
@@ -18,7 +18,7 @@ $ composer require aidynmakhataev/laravelsurveyjs
 2) Publish the config file & run the migrations 
 
 ```bash
-php artisan vendor:publish --provider="AidynMakhataev\LaravelSurveyJs\LaravelSurveyJsServiceProvider"
+php artisan vendor:publish --provider="Fruitware\LaravelSurveyJS\LaravelSurveyJsServiceProvider"
 php artisan migrate
 ```
 
