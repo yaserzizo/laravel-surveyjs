@@ -2,10 +2,10 @@
     <v-app>
         <v-card flat>
             <v-toolbar dark color="primary" flat extended>
-                <v-toolbar-title>Survey Manager</v-toolbar-title>
+                <v-toolbar-title>Quiz Manager</v-toolbar-title>
             </v-toolbar>
             <v-layout row pb-2>
-                <v-flex xs8 offset-xs2>
+                <v-flex xs12 offset-xs0>
                     <v-card class="card--flex-toolbar">
                         <v-card-text>
                             <router-view></router-view>

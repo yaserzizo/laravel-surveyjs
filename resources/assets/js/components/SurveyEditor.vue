@@ -26,6 +26,63 @@
 
 <script>
     import SurveyBuilder from './../components/SurveyBuilder'
+    import * as SurveyVue from "survey-vue";
+    import * as SurveyKo from "survey-knockout";
+
+
+    SurveyKo
+        .Serializer
+        .addProperty("question", {
+            name: "uid:number",
+            default: 99999,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("page", {
+            name: "uid:number",
+            default: 99999,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("question", {
+            name: "score:number",
+            default: 0,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("survey", {
+            name: "pass-score:number",
+            default: 0,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("survey", {
+            name: "total-score:number",
+            default: 0,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("question", {
+            name: "maxitems:number",
+            default: 0,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
+        .addProperty("itemvalue", {
+            name: "score:number",
+            default: 0,
+            category: "general"
+        });
+    SurveyKo.Serializer.findProperty("question", "uid").readOnly = true;
+    SurveyKo.Serializer.findProperty("survey", "total-score").readOnly = true;
+    SurveyKo.Serializer.findProperty("page", "uid").readOnly = true;
+
 
     export default {
         components: {

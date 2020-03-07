@@ -1,10 +1,10 @@
 <template>
     <div>
         <v-toolbar>
-            <v-toolbar-title>List of all available surveys</v-toolbar-title>
+            <v-toolbar-title>List of all available quiz templates</v-toolbar-title>
             <v-spacer></v-spacer>
             <v-dialog flat v-model="dialog" max-width="500px" content-class="remove-overflow">
-                <v-btn slot="activator" color="primary" dark class="mb-2">New Survey</v-btn>
+                <v-btn slot="activator" color="primary" dark class="mb-2">New Template</v-btn>
                 <v-card>
                     <v-card-title>
                         <span class="headline">{{ formTitle }}</span>
@@ -15,7 +15,7 @@
                                 <v-flex xs12>
                                     <v-text-field
                                             v-model="editedItem.name"
-                                            label="Survey name"
+                                            label="Template name"
                                             :rules="[
                                             () => !!editedItem.name || 'The field name is required',
                                             () => !!editedItem.name && editedItem.name.length >= 3 || 'Name must contain at least 3 character!',
@@ -81,7 +81,7 @@
                 pageLength: 1,
                 dialog: false,
                 loading: false,
-                formTitle: 'New Survey',
+                formTitle: 'New Quiz Template',
                 headers: [
                     {
                         text: 'ID',
@@ -122,6 +122,7 @@
         methods: {
             getSurveys() {
                 this.loading = true;
+                console.log('get all');
                 axios.get('/survey', {
                     params: {
                         page: this.page
@@ -143,7 +144,7 @@
                 this.$router.push({name: 'editor', params: {id: id}})
             },
             deleteItem(item) {
-                if(confirm('Are you sure you want to delete this survey?')) {
+                if(confirm('Are you sure you want to delete this quiz template?')) {
                     this.snackbar = true;
                     axios.delete('/survey/' + item.id)
                         .then((response) => {
@@ -189,7 +190,11 @@
         }
     }
 </script>
-
+<!--<style scoped lang="scss">
+    .main-wrapper /deep/ {
+        @import "~vuetify/dist/vuetify.min";
+    }
+</style>-->
 <style>
     .remove-overflow {
         overflow: inherit;

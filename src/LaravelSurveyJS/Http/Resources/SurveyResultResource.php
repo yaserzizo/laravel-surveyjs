@@ -23,6 +23,9 @@ class SurveyResultResource extends JsonResource
             'id'            =>  $this->id,
             'json'          =>  $this->json,
             'ip_address'    =>  $this->ip_address,
+            'patient_name'  => ($this->patient)?$this->patient->name:'',
+            'score'         => $this->score,
+            'passed'        => $this->passed,
             'created_at'    =>  $this->created_at->formatLocalized('%A %d %B %Y'),
         ];
     }

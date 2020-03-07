@@ -15,10 +15,12 @@ class Survey extends Model
 {
     use SoftDeletes;
 
+    protected $table='templates';
+
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name', 'slug', 'json',
+        'name', 'slug', 'json','title','description','pass_score'
     ];
 
     protected $casts = [
@@ -64,6 +66,6 @@ class Survey extends Model
      */
     public function results()
     {
-        return $this->hasMany('Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models\SurveyResult', 'survey_id');
+        return $this->hasMany('App\Exam', 'template_id');
     }
 }

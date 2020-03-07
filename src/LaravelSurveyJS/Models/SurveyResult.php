@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class SurveyResult extends Model
 {
+protected $table='exams';
     protected $fillable = [
         'survey_id',
         'user_id',
@@ -41,8 +42,9 @@ class SurveyResult extends Model
      */
     public function survey()
     {
-        return $this->belongsTo('Fruitware\LaravelSurveyJS\LaravelSurveyJS\Models\Survey', 'survey_id');
+        return $this->belongsTo('App\Template', 'template_id');
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -51,4 +53,21 @@ class SurveyResult extends Model
     {
         return $this->belongsTo(config('survey-manager.user_model'), 'user_id');
     }
+    public function examPages()
+    {
+        return $this->hasMany('App\ExamPage');
+    }
+    public function examQuestions()
+    {
+        return $this->hasMany('App\ExamQuestion');
+    }
+    public function template()
+    {
+        return $this->belongsTo('App\Template');
+    }
+    public function patient()
+    {
+        return $this->belongsTo('App\Patient');
+    }
+
 }

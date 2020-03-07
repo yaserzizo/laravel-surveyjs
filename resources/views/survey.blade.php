@@ -7,22 +7,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Survey | {{$survey->name}}</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
-    <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/survey-manager/css/survey.css') }}" />
     <style>
+
+        html {
+            direction: rtl !important;
+        }
+        .btn {
+            float: right !important;
+        }
         .mt-25 {
             margin-top: 25px;
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body dir="rtl">
+    <div  class="container" style="width: 96%">
         <div class="row">
             <div class="col-xs-12 mt-25">
                 <div class="panel panel-default center-block">
                     <div class="panel-heading">{{$survey->name}}</div>
-                    <div class="panel-body" id="surveyElement">
+                    <div class="panel-body" id="surveyElement" style="display:inline-block;width:100%;">
                         <survey-show :survey-data="{{ json_encode($survey) }}"></survey-show>
                     </div>
                 </div>

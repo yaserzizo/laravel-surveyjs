@@ -38,7 +38,7 @@ class SurveyResultAPIController extends Controller
 
         $result = $survey->results()->create([
             'json'          =>  $request->input('json'),
-            'user_id'       =>  \Auth::check() ? \Auth::id() : null,
+            'user_id'       =>  auth()->check() ? auth()->id() : null,
             'ip_address'    =>  $request->ip(),
         ]);
 
