@@ -84,6 +84,7 @@
     SurveyKo.Serializer.findProperty("page", "uid").readOnly = true;
 
 
+
     export default {
         components: {
             SurveyBuilder

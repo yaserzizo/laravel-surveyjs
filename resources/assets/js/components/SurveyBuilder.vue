@@ -23,6 +23,7 @@
     CKEDITOR.config.contentsLangDirection = 'rtl';
     CKEDITOR.config.contentsLanguage = 'ar';
     CKEDITOR.config.language = 'ar';
+    CKEDITOR.config.removePlugins = 'easyimage, cloudservices';
     Object.keys(widgetsList).forEach(function (widget) {
         widgets[widget](SurveyKo);
     });

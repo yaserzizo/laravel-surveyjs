@@ -83,7 +83,7 @@
             this.survey.firstPageIsStarted = true;
             this.survey.showPrevButton = false;
 
-           // let self=this;
+            let self=this;
             this.survey.onValueChanged.add(function(sender, options) {
                 console.log('chg')
                 console.log(onValueChangingProcessing)
@@ -215,9 +215,18 @@
            // this.survey.on
 
             this.survey.onCurrentPageChanged.add(function(sender, options) {
-                this.survey.stopTimer();
-                this.survey.startTimer();
+                console.log(options)
+                console.log(options.oldCurrentPage.timeSpent)
+               // this.survey.stopTimer();
+               // this.survey.startTimer();
             });
+            this.survey.onStarted.add(function (sender) {
+                console.log('start fired');
+               // this.survey.stopTimer();
+
+                self.survey.startTimer();
+                console.log(self.survey.timeSpent)
+            })
 
             this.survey
                  .onTextMarkdown
@@ -344,10 +353,12 @@
                             }
                         });
                         pgs[page.uid]={"pgname":page.name,"time":page.timeSpent,"answers":qus};
+                        console.log(page.uid+":"+page.timeSpent)
 
                     }
                 });
                 result.setValue("pages", pgs);
+                console.log('0000')
                 console.log(result)
 
                 //clearInterval(timerId);
@@ -367,8 +378,11 @@
                             },
                             format: [210, 297]
                         };
+                        console.log('1')
                         var surveyPDF = new SurveyPDF.SurveyPDF(this.surveyData.json, options);
+                        console.log('2')
                        var converter = new showdown.Converter();
+                        console.log('3')
                         /*var surv = this.survey;*/
                         surveyPDF.onTextMarkdown.add(function(surv, options) {
                             var str = converter.makeHtml(options.text);
@@ -376,9 +390,13 @@
                             str = str.substring(0, str.length - 4);
                             options.html = str;
                         });
+                        console.log('4')
                         surveyPDF.data = this.survey.data;
+                        console.log('5')
                         surveyPDF.mode = "display";
+                        console.log('6')
                         surveyPDF.save('surveyResult.pdf');
+                        console.log('7')
                     })
             })
         }

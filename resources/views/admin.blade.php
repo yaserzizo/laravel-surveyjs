@@ -9,7 +9,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('vendor/survey-manager/css/survey.css') }}" />
 </head>
-<body dir="rtl">
+<body >
 
 <div id="survey-manager">
 </div>

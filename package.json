@@ -14,9 +14,9 @@
     "cross-env": "^5.1",
     "laravel-mix": "^2.0",
     "popper.js": "^1.12",
-    "survey-creator": "^1.5.12",
-    "survey-knockout": "^1.5.12",
-    "survey-vue": "^1.5.12",
+    "survey-creator": "^1.7.26",
+    "survey-knockout": "^1.7.26",
+    "survey-vue": "^1.7.26",
     "vue": "^2.5.7"
   },
   "dependencies": {
