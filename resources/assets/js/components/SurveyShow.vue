@@ -1,16 +1,19 @@
 <template>
     <div>
-        <survey :survey="survey"></survey>
+<!--        <select v-model="selectedLocal" >
+            <option value="en" selected="true">English</option>
+            <option value="ar">العربية</option></select>-->
+        <survey v-if="surveyshow" :survey="survey"></survey>
     </div>
 </template>
 
 <script>
     import * as SurveyVue from 'survey-vue';
-    import * as SurveyPDF from "survey-pdf";
-    import 'bootstrap/dist/css/bootstrap.css';
+  //  import * as SurveyPDF from "survey-pdf";
+  //  import 'bootstrap/dist/css/bootstrap.css';
     import * as showdown from "showdown/dist/showdown.min";
 
-    const Survey = SurveyVue.Survey;
+     const Survey = SurveyVue.Survey;
     let onValueChangingProcessing = false;
     SurveyVue.StylesManager.applyTheme(SurveyConfig.theme)
     CKEDITOR.config.contentsLangDirection = 'rtl';
@@ -33,10 +36,15 @@
         components: {
             Survey
         },
-        props: ['surveyData'],
+        props: ['surveyData','islast','currentStep','tm','surveyContainerId'],
         data () {
             return {
-                survey: {}
+                surveyshow:false,
+                survey: {},
+                selectedLocal:window.locale,
+                surveyResult:{},
+                patientId:null,
+                containerId:this.surveyContainerId
             }
         },
         errorCaptured (err, vm, info) {
@@ -44,6 +52,7 @@
             return false
         },
         created () {
+            let self=this;
             SurveyVue.Serializer.addProperty("page", "uid:number");
             SurveyVue.Serializer.addProperty("question", "uid:number");
             SurveyVue.Serializer.addProperty("question", "score:number");
@@ -52,9 +61,19 @@
             SurveyVue.Serializer.addProperty("itemvalue", "score:number");
             SurveyVue.Serializer.addProperty("survey", "total-score:number");
             SurveyVue.Serializer.addProperty("survey", "pass-score:number");
+            SurveyVue.Serializer.addProperty("survey", {name:"exam-order:number",category:"general"});
+            SurveyVue.Serializer.addProperty("survey", {name:"patient_id:string",default: null ,category:"data"});
+            SurveyVue.Serializer.addProperty("survey", {name:"container_id:string",default: self.containerId ,category:"data"});
 
             //Survey.FunctionFactory.Instance.register(“age”, age);
             this.survey = new SurveyVue.Model(this.surveyData.json);
+            if (this.surveyData.exam.hasOwnProperty('json')) {
+                this.survey.data = this.surveyData.exam.json;
+                this.survey.mode='display';
+                this.survey.isSinglePage = true;
+                return false;
+            }
+
             this.survey
                 .onAfterRenderQuestion
                 .add(function (survey, options) {
@@ -66,6 +85,7 @@
                 });
             this.survey.onAfterRenderSurvey.add(function(survey, options) {
                 console.log('me');
+                survey.setVariable("next-exam", survey["next-exam"])
                 /*if (survey.pages[0].questions[0].name == 'currentDateTime') {
                     survey.pages[0].questions[0].value = new Date().toLocaleString();
                 }*/
@@ -79,11 +99,11 @@
                     }
                 })
             });
-            this.survey.locale="ar";
-            this.survey.firstPageIsStarted = true;
+           // this.survey.locale="ar";
+          //  this.survey.firstPageIsStarted = true;
             this.survey.showPrevButton = false;
 
-            let self=this;
+            //let self=this;
             this.survey.onValueChanged.add(function(sender, options) {
                 console.log('chg')
                 console.log(onValueChangingProcessing)
@@ -214,18 +234,17 @@
             var converter = new showdown.Converter();
            // this.survey.on
 
-            this.survey.onCurrentPageChanged.add(function(sender, options) {
-                console.log(options)
-                console.log(options.oldCurrentPage.timeSpent)
+/*            this.survey.onCurrentPageChanged.add(function(sender, options) {
+
                // this.survey.stopTimer();
                // this.survey.startTimer();
-            });
+            });*/
             this.survey.onStarted.add(function (sender) {
-                console.log('start fired');
+               // console.log('start fired');
                // this.survey.stopTimer();
 
                 self.survey.startTimer();
-                console.log(self.survey.timeSpent)
+               /* console.log(self.survey.timeSpent)*/
             })
 
             this.survey
@@ -242,6 +261,12 @@
                  });
         },
         methods: {
+            examshow(sh = false) {
+                this.surveyshow=sh;
+            },
+            updateLocal(event) {
+                this.survey.locale=event.target.value;
+            },
              renderTime(page,val){
                  return;
                 if(!timeEl) return;
@@ -271,9 +296,9 @@
              timerCallback() {
                  this.survey.stopTimer();
                  var page = this.survey.currentPage;
-                 console.log('page is');
+/*                 console.log('page is');
                  console.log(this.survey.timeSpent);
-                 console.log(page);
+                 console.log(page);*/
                  if(!page) {
                      this.survey.setValue('finalPg', this.survey.timeSpent);
                      this.survey.startTimer();
@@ -306,6 +331,18 @@
         },
         mounted () {
             const self = this;
+            this.$eventHub.$on('notifyPatient', function (patient) {
+
+                self.patientId = patient;
+
+            });
+
+            if (this.survey.mode == 'display') {
+                this.survey.maxTimeToFinish=0;
+                this.survey.showTimerPanel='none';
+
+                return false;
+            }
 /*
             this.survey.onCurrentPageChanged.add(function(){
              //    self.timerCallback();
@@ -317,6 +354,8 @@
 /*            window.timerId = window.setInterval(function(){
                 self.timerCallback();
             }, 1000);*/
+            this.survey.locale=this.selectedLocal;
+
             this.survey.onComplete.add((result) => {
                 onValueChangingProcessing=true;
             //    self.timerCallback();
@@ -358,11 +397,14 @@
                     }
                 });
                 result.setValue("pages", pgs);
-                console.log('0000')
-                console.log(result)
+                result.setValue("patient_id", self.patientId);
+                result.setValue("container_id", self.containerId);
+
+
 
                 //clearInterval(timerId);
                // survey.getPlainData()
+                this.surveyResult=result;
                 let url = `/survey/${this.surveyData.id}/result`
                 axios.post(url, {json: result.data})
                     .then((response) => {
@@ -378,12 +420,17 @@
                             },
                             format: [210, 297]
                         };
-                        console.log('1')
-                        var surveyPDF = new SurveyPDF.SurveyPDF(this.surveyData.json, options);
+                        console.log('1');
+                        if (!self.islast) {
+                            self.surveyOnComplete(self.currentStep);
+
+
+                        }
+                       /* var surveyPDF = new SurveyPDF.SurveyPDF(this.surveyData.json, options);
                         console.log('2')
                        var converter = new showdown.Converter();
                         console.log('3')
-                        /*var surv = this.survey;*/
+                        /!*var surv = this.survey;*!/
                         surveyPDF.onTextMarkdown.add(function(surv, options) {
                             var str = converter.makeHtml(options.text);
                             str = str.substring(3);
@@ -395,8 +442,8 @@
                         console.log('5')
                         surveyPDF.mode = "display";
                         console.log('6')
-                        surveyPDF.save('surveyResult.pdf');
-                        console.log('7')
+                        surveyPDF.save('ExamResult.pdf');
+                        console.log('7')*/
                     })
             })
         }

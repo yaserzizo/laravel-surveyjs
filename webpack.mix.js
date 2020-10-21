@@ -15,6 +15,13 @@ mix.webpackConfig({
 mix
     .setPublicPath('public')
     .js('resources/assets/js/survey-manager.js', 'public/js/')
-    .js('resources/assets/js/survey-front.js', 'public/js/');/*.sourceMaps()
-    .version();
-*/
+    .js('resources/assets/js/survey-front.js', 'public/js/');
+/*mix.extract([
+    'jquery',
+    'bootstrap',
+    'popper.js',
+    'axios',
+    'vue',
+], 'public/js/frontend/vendor.js')
+    .sourceMaps();*/
+

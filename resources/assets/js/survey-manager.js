@@ -1,7 +1,7 @@
 require("./base")
 
 window.Vue = require("vue")
-
+window.Survey=null;
 import Vuetify from 'vuetify'
 
 import 'vuetify/dist/vuetify.min.css'

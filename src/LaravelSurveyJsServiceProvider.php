@@ -64,25 +64,25 @@ class LaravelSurveyJsServiceProvider extends ServiceProvider
 
     private function definePublishable()
     {
-        $this->publishes([
+/*        $this->publishes([
             __DIR__.'/../config/survey-manager.php' => config_path('survey-manager.php'),
         ]);
 
         $this->publishes([
             realpath(__DIR__.'/../database/migrations') => database_path('migrations'),
-        ], 'migrations');
+        ], 'migrations');*/
 
         $this->publishes([
            realpath(__DIR__.'/../public') => public_path('vendor/survey-manager'),
         ], 'public');
 
-        $this->publishes([
+/*        $this->publishes([
            realpath(__DIR__.'/../resources/views') => resource_path('views/vendor/survey-manager'),
         ]);
 
         $this->publishes([
             realpath(__DIR__.'/routes') => base_path('routes/vendor/survey-manager'),
-        ]);
+        ]);*/
        // $this->loadRoutesFrom(base_path('routes/vendor/survey-manager'));
 
     }

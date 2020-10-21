@@ -1,17 +1,17 @@
 <?php
 
-
-Route::group(
-    [
-        'namespace'     =>  'App\Http\Controllers',
-        'middleware'    =>  config('survey-manager.route_middleware'),
-        'prefix'        =>  config('survey-manager.route_prefix'),
-    ],
-    function () {
-        Route::get('/{surveySlug}', 'TemplateController@runSurvey')->name('survey-manager.run');
-    }
-);
-
+//Route::localized(function () {
+    Route::group(
+        [
+            'namespace' => 'App\Http\Controllers',
+            'middleware' => config('survey-manager.route_middleware'),
+            'prefix' => config('survey-manager.route_prefix'),
+        ],
+        function () {
+            Route::get('/{surveySlug?}', 'TemplateController@runSurvey')->name('survey-manager.run');
+        }
+    );
+//});
 Route::group(
     [
         'namespace'     =>  'App\Http\Controllers',

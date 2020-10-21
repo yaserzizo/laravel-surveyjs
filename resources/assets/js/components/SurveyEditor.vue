@@ -74,6 +74,13 @@
         });
     SurveyKo
         .Serializer
+        .addProperty("survey", {
+            name: "exam-order:number",
+            default: 1,
+            category: "general"
+        });
+    SurveyKo
+        .Serializer
         .addProperty("itemvalue", {
             name: "score:number",
             default: 0,
